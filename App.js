@@ -5,6 +5,7 @@ import SplashScreen from "./src/screen/SplashSC";
 import Login from "./src/screen/Login";
 import Register from "./src/screen/Register";
 import Home from "./src/screen/Home";
+import MapsMenu from "./src/screen/MapsMenu";
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,10 @@ const MyStack = () => {
                 <Stack.Screen 
                 name="Home" 
                 component={Home} 
+                options={{headerShown : false}}/>
+                <Stack.Screen 
+                name="MapsMenu" 
+                component={MapsMenu} 
                 options={{headerShown : false}}/>
             </Stack.Navigator>
         </NavigationContainer>
