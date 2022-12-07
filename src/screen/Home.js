@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 
 const Home = ({ navigation }) => {
     return (
-        <View>
+        <ScrollView>
             <View style={style.wrapperTop}>
                 <View style={style.flexTop}>
                     <Text style={style.txtTop}>Halo, Nur Said Amirudin</Text>
@@ -78,46 +78,26 @@ const Home = ({ navigation }) => {
                     <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Pertamini</Text>
                 </TouchableOpacity>
             </View>
-
-            <View style={style.wrapperNews}>
-                <View style={style.newsWrap}>
-                    <Text>Gambar Berita Terbaru</Text>
-                    <Text>-seputar lalu lintas-</Text>
+            <Text style={{
+                marginLeft:10, 
+                fontWeight: '600', 
+                fontSize: 20,
+                color: '#00AA13',
+                marginTop: 30
+                }}
+                >Merchant Kami</Text>
+            <View  style={style.wrapperMerchant}>
+                <View style={style.merchant}>
                 </View>
-                <View style={style.newsWrap}>
-                    <Text>Gambar Berita Terbaru</Text>
-                    <Text>-seputar lalu lintas-</Text>
+                <View style={style.merchant}>
                 </View>
-                <View style={style.newsWrap}>
-                    <Text>Gambar Berita Terbaru</Text>
-                    <Text>-seputar lalu lintas-</Text>
+                <View style={style.merchant}>
                 </View>
-                <View style={style.newsWrap}>
-                    <Text>Gambar Berita Terbaru</Text>
-                    <Text>-seputar lalu lintas-</Text>
-                </View>
-            </View>
-
-            <View style={style.wrapperBtmNav}>
-                <View>
-                    <View style={style.bttmNav}></View>
-                    <Text>Home</Text>
-                </View>
-                <View>
-                    <View style={style.bttmNav}></View>
-                    <Text>Maps</Text>
-                </View>
-                <View>
-                    <View style={style.bttmNav}></View>
-                    <Text>History</Text>
-                </View>
-                <View>
-                    <View style={style.bttmNav}></View>
-                    <Text>Profil</Text>
+                <View style={style.merchant}>
                 </View>
             </View>
 
-        </View>
+        </ScrollView>
     )
 }
 
@@ -228,4 +208,15 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    wrapperMerchant: {
+        padding: 10
+    },
+    merchant: {
+        backgroundColor: '#D9D9D9',
+        width: 390,
+        maxWidth: 390,
+        height: 200,
+        marginBottom: 10,
+        borderRadius: 10
+    }
 })
