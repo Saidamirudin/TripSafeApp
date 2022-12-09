@@ -31,7 +31,7 @@ const MyStack = () => {
                     component={Register}
                     options={{ headerShown: false }} />
                 <Stack.Screen
-                    name="Home"
+                    name="HomeSC"
                     component={TabNav}
                     options={{ headerShown: false }} />
                 <Stack.Screen
@@ -48,11 +48,23 @@ export default MyStack;
 const TabNav = () => {
     return (
         <Tab.Navigator
-            activeColor="#f0edf6"
-            inactiveColor="#3e2465"
-            barStyle={{ backgroundColor: '#694fad' }}>
-            <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Tab.Screen name="Maps" component={Maps} options={{ headerShown: false }} />
+            screenOptions={{
+                // labelStyle: {
+                //     fontSize: 16,
+                //     color: '#00AA13',
+                //     paddingBottom: 10,
+                //     fontWeight: 'bold'
+                // }
+                tabBarActiveTintColor: '#00AA13',
+                tabBarInactiveTintColor: '#d8d4d4',
+                tabBarLabelStyle: {
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                    paddingBottom: 10
+                }
+            }}>
+            <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
+            <Tab.Screen name="Maps" component={Maps} options={{headerShown: false}} />
             <Tab.Screen name="History" component={History} options={{ headerShown: false }} />
             <Tab.Screen name="Profil" component={Profil} options={{ headerShown: false }} />
         </Tab.Navigator>

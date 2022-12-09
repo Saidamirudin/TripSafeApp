@@ -46,7 +46,7 @@ const Register = ({navigation}) => {
             </View>
 
             <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => navigation.navigate('HomeSC')}>
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Daftar</Text>
                 </View>
