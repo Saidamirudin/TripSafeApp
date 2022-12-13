@@ -1,7 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-// import MapView from 'react-native-maps'
-
+import { View, Text, StyleSheet, Image } from 'react-native'
 
 const style = StyleSheet.create({
     topText: {
@@ -15,6 +13,41 @@ const style = StyleSheet.create({
         fontSize: 19,
         fontWeight: 'bold'
     },
+    wrapMapbox: {
+        height: 610,
+        backgroundColor: 'skyblue'
+    },
+    wrapLocation: {
+        height: 60,
+        backgroundColor: '#0FDC26',
+        flexDirection: 'row'
+    },
+    detInfo: {
+        flex: 3,
+        padding: 5
+    },
+    wrapTouch: {
+        flex: 1,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    txtInfo: {
+        fontSize: 15,
+        fontWeight: '700',
+    },
+    txtKoor: {
+        fontSize: 15
+    },
+    copy: {
+        width: 30,
+        height: 30,
+        marginRight: 10
+    },
+    share: {
+        width: 30,
+        height: 30
+    }
 })
 
 const Maps = () => {
@@ -25,24 +58,19 @@ const Maps = () => {
                     Maps - Lokasi Anda Sekarang
                 </Text>
             </View>
-            {/* <MapView
-                style={{ flex: 1 }}
-                initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
-            >
-                <MapView.Marker
-                    coordinate={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                    }}
-                    title="My Marker"
-                    description="Some description"
-                />
-            </MapView> */}
+            <View style={style.wrapMapbox}>
+
+            </View>
+            <View style={style.wrapLocation}>
+                <View style={style.detInfo}>
+                    <Text style={style.txtInfo}>Titik Koordinat Lokasi Anda :</Text>
+                    <Text style={style.txtKoor}>.............................</Text>
+                </View>
+                <View style={style.wrapTouch}>
+                    <Image style={style.copy} source={require('../asset/icon/copy.png')}></Image>
+                    <Image style={style.share} source={require('../asset/icon/share.png')}></Image>
+                </View>
+            </View>
         </View>
     )
 }
