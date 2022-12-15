@@ -1,6 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 const style = StyleSheet.create({
     topText: {
@@ -11,14 +10,16 @@ const style = StyleSheet.create({
     },
     txtTop: {
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        fontSize: 19
     },
     wrapMaps: {
         height: 690,
         backgroundColor: 'skyblue'
     },
     flexLokasi: {
-        margin: 15,
+        marginHorizontal: 10,
+        marginVertical: 10,
         backgroundColor: '#d8d4d4',
         height: 80,
         flexDirection: 'row',
@@ -27,15 +28,26 @@ const style = StyleSheet.create({
         borderRadius: 10
     },
     imgLokasi: {
+        width: 50,
+        height: 50,
+        backgroundColor: 'white',
+        marginRight: 20
+    },
+    icoLokasi: {
+        marginLeft: 70,
         width: 40,
-        height: 40,
-        backgroundColor: 'white'
+        height: 40
     }
 })
 
-const MapsMenu = () => {
+const Lokasi = ({ navigation }) => {
     return (
+        <View> </View>
+    )
+}
 
+const MapsMenu = ({ navigation }) => {
+    return (
         <ScrollView>
             <View style={style.topText}>
                 <Text style={style.txtTop}>
@@ -43,17 +55,25 @@ const MapsMenu = () => {
                 </Text>
             </View>
             <View style={style.wrapMaps}></View>
-            <TouchableOpacity style={style.flexLokasi}>
-                <Image style={style.imgLokasi}></Image>
+            
+
+            <TouchableOpacity
+            onPress={() => navigation.navigate('MapsDetail')}>
+            <View style={style.flexLokasi}>
+                <Image style={style.imgLokasi}
+                ></Image>
                 <View>
                     <View>
-                        <Text>Nama Tempat</Text>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Nama Tempat</Text>
                         <Text>0,8 KM</Text>
                     </View>
                     <Text>Jl Konoha No 21, Yogyakarta</Text>
                 </View>
-                <Image style={style.icoLokasi}></Image>
-            </TouchableOpacity>
+                <Image style={style.icoLokasi}
+                    source={require('../asset/icon/lokasi.png')}
+                ></Image>
+            </View>
+        </TouchableOpacity>
         </ScrollView>
 
     )

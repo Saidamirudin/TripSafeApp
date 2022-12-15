@@ -10,6 +10,7 @@ import MapsMenu from "./src/screen/MapsMenu";
 import Maps from "./src/screen/Maps";
 import History from "./src/screen/History";
 import Profil from "./src/screen/Profil";
+import MapsDetail from "./src/screen/MapsDetail";
 
 
 const Tab = createBottomTabNavigator();
@@ -39,6 +40,10 @@ const MyStack = () => {
                     name="MapsMenu"
                     component={MapsMenu}
                     options={{ headerShown: false }} />
+                <Stack.Screen
+                    name="MapsDetail"
+                    component={MapsDetail}
+                    options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -50,12 +55,6 @@ const TabNav = () => {
     return (
         <Tab.Navigator
             screenOptions={{
-                // labelStyle: {
-                //     fontSize: 16,
-                //     color: '#00AA13',
-                //     paddingBottom: 10,
-                //     fontWeight: 'bold'
-                // }
                 tabBarActiveTintColor: '#00AA13',
                 tabBarInactiveTintColor: '#d8d4d4',
                 tabBarLabelStyle: {
@@ -64,8 +63,9 @@ const TabNav = () => {
                     paddingBottom: 10
                 }
             }}>
-            <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
-            <Tab.Screen name="Maps" component={Maps} options={{headerShown: false}} />
+
+            <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            <Tab.Screen name="Maps" component={Maps} options={{ headerShown: false }} />
             <Tab.Screen name="History" component={History} options={{ headerShown: false }} />
             <Tab.Screen name="Profil" component={Profil} options={{ headerShown: false }} />
         </Tab.Navigator>

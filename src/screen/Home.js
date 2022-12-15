@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView} from 'react-native'
+
 
 const Home = ({ navigation }) => {
     return (
@@ -17,7 +18,8 @@ const Home = ({ navigation }) => {
                 <View style={style.searchWrap}>
                     <Image
                         style={style.icoMaps}
-                        source={require('../asset/icon/maps.png')} />
+                        source={require('../asset/icon/maps.png')} 
+                        />
                     <TextInput
                         placeholder='Telusuri di sini'
                         style={style.searchInput}></TextInput>

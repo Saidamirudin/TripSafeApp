@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
 const style = StyleSheet.create({
     topText: {
@@ -67,8 +67,14 @@ const Maps = () => {
                     <Text style={style.txtKoor}>.............................</Text>
                 </View>
                 <View style={style.wrapTouch}>
-                    <Image style={style.copy} source={require('../asset/icon/copy.png')}></Image>
-                    <Image style={style.share} source={require('../asset/icon/share.png')}></Image>
+                    <TouchableOpacity>
+                        <Image style={style.copy} source={require('../asset/icon/copy.png')}></Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image style={style.share} source={require('../asset/icon/share.png')}></Image>
+                    </TouchableOpacity>
+
+
                 </View>
             </View>
         </View>
