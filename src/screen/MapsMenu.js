@@ -54,9 +54,9 @@ const MapsMenu = ({ navigation }) => {
                     Lokasi Tempat Terdekat
                 </Text>
             </View>
+
             <View style={style.wrapMaps}></View>
             
-
             <TouchableOpacity
             onPress={() => navigation.navigate('MapsDetail')}>
             <View style={style.flexLokasi}>
