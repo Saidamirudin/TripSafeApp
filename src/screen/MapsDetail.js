@@ -177,6 +177,7 @@ const MapsDetail = () => {
                         <ImageLokasi style={style.imgLokasi} />
                     </View>
                 </View>
+                
                 <View style={style.flexBTN}>
                     <TouchableOpacity>
                         <View style={style.btnTelp}>
