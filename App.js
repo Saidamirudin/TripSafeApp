@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SplashScreen from "./src/screen/SplashSC";
 import Login from "./src/screen/Login";
 import Register from "./src/screen/Register";
@@ -11,6 +12,8 @@ import Maps from "./src/screen/Maps";
 import History from "./src/screen/History";
 import Profil from "./src/screen/Profil";
 import MapsDetail from "./src/screen/MapsDetail";
+import Chart from "./src/screen/Chart";
+import { Image } from "react-native";
 
 
 const Tab = createBottomTabNavigator();
@@ -61,13 +64,38 @@ const TabNav = () => {
                     fontSize: 16,
                     fontWeight: 'bold',
                     paddingBottom: 10
-                }
+                },
+                tabBarStyle: { height: 65, elevation: 5, paddingTop: 10 }
             }}>
 
-            <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Tab.Screen name="Maps" component={Maps} options={{ headerShown: false }} />
-            <Tab.Screen name="History" component={History} options={{ headerShown: false }} />
-            <Tab.Screen name="Profil" component={Profil} options={{ headerShown: false }} />
+            <Tab.Screen name="Home" component={Home} options={{
+                headerShown: false,
+                tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="home" color={color} size={size} />
+                )
+            }}
+            />
+            <Tab.Screen name="Chart" component={Chart} options={{
+                headerShown: false,
+                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+            }}
+            />
+            <Tab.Screen name="Maps" component={Maps} options={{
+                headerShown: false,
+                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+            }}
+            />
+            <Tab.Screen name="History" component={History} options={{
+                headerShown: false,
+                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+            }}
+            />
+            <Tab.Screen name="Profil" component={Profil} options={{
+                headerShown: false,
+                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+            }}
+            />
+
         </Tab.Navigator>
     )
 }
