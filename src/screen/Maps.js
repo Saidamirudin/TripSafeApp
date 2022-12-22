@@ -6,7 +6,8 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 3
     },
     txtTop: {
         color: 'white',
@@ -14,13 +15,14 @@ const style = StyleSheet.create({
         fontWeight: 'bold'
     },
     wrapMapbox: {
-        height: 610,
+        height: 590,
         backgroundColor: 'skyblue'
     },
     wrapLocation: {
         height: 60,
         backgroundColor: '#0FDC26',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        elevation: 3
     },
     detInfo: {
         flex: 3,
@@ -42,11 +44,13 @@ const style = StyleSheet.create({
     copy: {
         width: 30,
         height: 30,
-        marginRight: 10
+        marginRight: 10,
+        elevation: 5
     },
     share: {
         width: 30,
-        height: 30
+        height: 30,
+        elevation: 5
     }
 })
 

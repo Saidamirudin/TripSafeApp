@@ -19,7 +19,8 @@ const style = StyleSheet.create({
         borderRadius: 100/2,
         backgroundColor: '#D8D4D4',
         marginTop: 70,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        elevation: 3
     },
     txtWrap: {
         marginTop: 20,
@@ -45,7 +46,8 @@ const style = StyleSheet.create({
         backgroundColor: '#FBBC04',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 3
     },
     txtEdit: {
         color: 'white',
@@ -59,7 +61,8 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 3
     },
     txtSimpan: {
         color: 'white',
@@ -76,7 +79,9 @@ const Profil = () => {
             </View>
 
             <View>
-                <Image style={style.profilImg}/>
+                <Image 
+                source={require('../asset/image/giyu.jpg')}
+                style={style.profilImg}/>
             </View>
 
             <View style={style.txtWrap}>

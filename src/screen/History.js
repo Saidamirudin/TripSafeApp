@@ -7,7 +7,8 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 3
     },
     txtTop: {
         color: 'white',
@@ -15,10 +16,11 @@ const style = StyleSheet.create({
         fontSize: 19
     },
     cardWrap: {
-        backgroundColor: '#D8D4D4',
+        backgroundColor: '#60D669',
         padding: 10,
         margin: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 3
     },
     dateCard: {
         fontWeight: '700',
@@ -37,7 +39,9 @@ const style = StyleSheet.create({
         fontSize: 16
     }, 
     txtHis2: {
-        fontSize: 16
+        fontSize: 16,
+        color: '#fff',
+        marginRight: 30
     }
 })
 
@@ -61,7 +65,7 @@ const CardHistory = () => {
                     </View>
                     <View style={style.flxText}>
                         <Text style={style.txtHis}>Jam</Text>
-                        <Text style={style.txtHis2}>: Pukul 20.14 WIB</Text>
+                        <Text style={style.txtHis2}>: 20.14 WIB</Text>
                     </View>
                 </View>
             </TouchableOpacity>

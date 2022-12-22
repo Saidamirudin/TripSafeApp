@@ -7,6 +7,7 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         alignItems: 'center',
         justifyContent: 'center',
+        elevation: 3
     },
     txtTop: {
         fontWeight: 'bold',
@@ -22,7 +23,8 @@ const style = StyleSheet.create({
         backgroundColor: '#60D669',
         flexDirection: 'row',
         padding: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        elevation: 5
     },
     ketJarak: {
         fontSize: 16,
@@ -78,12 +80,13 @@ const style = StyleSheet.create({
     },
     btnTelp: {
         height: 50,
-        borderWidth: 4,
+        borderWidth: 3,
         borderRadius: 15,
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: '#00AA13',
-        width: 180
+        width: 180,
+        
     },
     btnWA: {
         height: 50,
@@ -93,6 +96,7 @@ const style = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#00AA13',
         width: 180,
+        elevation: 1
     },
     txtBTNtlp: {
         fontWeight: 'bold',

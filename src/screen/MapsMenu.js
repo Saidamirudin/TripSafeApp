@@ -7,6 +7,7 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         alignItems: 'center',
         justifyContent: 'center',
+        elevation: 3
     },
     txtTop: {
         fontWeight: 'bold',
@@ -25,7 +26,8 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 3
     },
     imgLokasi: {
         width: 50,
@@ -60,7 +62,9 @@ const MapsMenu = ({ navigation }) => {
             <TouchableOpacity
             onPress={() => navigation.navigate('MapsDetail')}>
             <View style={style.flexLokasi}>
-                <Image style={style.imgLokasi}
+                <Image 
+                source={require('../asset/image/lokasi.png')}
+                style={style.imgLokasi}
                 ></Image>
                 <View>
                     <View>

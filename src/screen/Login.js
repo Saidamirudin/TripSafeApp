@@ -149,7 +149,8 @@ const style = StyleSheet.create({
         backgroundColor: '#00AA13',
         justifyContent: 'center',
         alignSelf: 'center',
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 3
     },
     textLogin: {
         color: 'white',

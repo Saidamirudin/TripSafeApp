@@ -14,6 +14,7 @@ import Profil from "./src/screen/Profil";
 import MapsDetail from "./src/screen/MapsDetail";
 import Chart from "./src/screen/Chart";
 import { Image } from "react-native";
+import Merchant from "./src/screen/Merchant";
 
 
 const Tab = createBottomTabNavigator();
@@ -47,6 +48,10 @@ const MyStack = () => {
                     name="MapsDetail"
                     component={MapsDetail}
                     options={{ headerShown: false }} />
+                <Stack.Screen
+                    name="Merchant"
+                    component={Merchant}
+                    options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -65,34 +70,32 @@ const TabNav = () => {
                     fontWeight: 'bold',
                     paddingBottom: 10
                 },
-                tabBarStyle: { height: 65, elevation: 5, paddingTop: 10 }
+                tabBarStyle: { height: 70, elevation: 5, paddingTop: 10 }
             }}>
 
             <Tab.Screen name="Home" component={Home} options={{
                 headerShown: false,
-                tabBarIcon: ({ color, size }) => (
-                    <MaterialCommunityIcons name="home" color={color} size={size} />
-                )
+                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/home.png')} />
             }}
             />
             <Tab.Screen name="Chart" component={Chart} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/cart.png')} />
             }}
             />
             <Tab.Screen name="Maps" component={Maps} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+                tabBarIcon: () => <Image  source={require('./src/asset/icon/maps-nav.png')} />
             }}
             />
             <Tab.Screen name="History" component={History} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/history.png')} />
             }}
             />
             <Tab.Screen name="Profil" component={Profil} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image source={require('./src/asset/icon/lock.png')} />
+                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/profil.png')} />
             }}
             />
 
