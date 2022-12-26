@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 
+
 const style = StyleSheet.create({
     wrapperTop: {
         flexDirection: 'row',
@@ -145,24 +146,7 @@ const style = StyleSheet.create({
     }
 })
 
-const Merchant = ({navigation}) => {
-    return (
-        <TouchableOpacity style={style.wrapperMerchant}
-       >
-            <View style={style.merchant}>
-                <Image
-                    source={require('../asset/image/lokasi.png')}
-                    style={style.imgMerchant}
-                />
-                <View style={style.wrapTxt}>
-                    <Text style={style.txtMerchant}>Nama Merchant</Text>
-                    <Text style={style.detTxt}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</Text>
-                    <Text style={style.txtMerKat}>Kategori</Text>
-                </View>
-            </View>
-        </TouchableOpacity>
-    )
-}
+
 
 
 const Home = ({ navigation }) => {
@@ -208,7 +192,7 @@ const Home = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('MapsMenu')}>
+                    onPress={() => navigation.navigate('Merchant')}>
                     <View style={style.linkMenu2}>
                         <Image
                             source={require('../asset/icon/scooter.png')} />
@@ -270,10 +254,23 @@ const Home = ({ navigation }) => {
 
             </View>
 
-            <Merchant  onPress={() => navigation.navigate('Merchant')} />
-            <Merchant />
-            <Merchant />
-            <Merchant />
+            <TouchableOpacity style={style.wrapperMerchant}
+                onPress={() => navigation.navigate('Merchant')}
+            >
+                <View style={style.merchant}>
+                    <Image
+                        source={require('../asset/image/lokasi.png')}
+                        style={style.imgMerchant}
+                    />
+                    <View style={style.wrapTxt}>
+                        <Text style={style.txtMerchant}>Nama Merchant</Text>
+                        <Text style={style.detTxt}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</Text>
+                        <Text style={style.txtMerKat}>Kategori</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+
+
         </ScrollView>
     )
 }

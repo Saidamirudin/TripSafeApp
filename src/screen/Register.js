@@ -1,22 +1,42 @@
 import React from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Image } from 'react-native'
 
-const Register = ({navigation}) => {
+const Register = ({ navigation }) => {
     return (
         <View>
-            <View style={style.WrapperJudul}>
-                <Image
-                    source={require('../asset/image/LOGO.png')}
-                    style={style.logo}
-                />
-            </View>
 
             <View style={style.WrapperRegister}>
-                <Text style={style.TxtRegis}>Daftar Sekarang</Text>
-                <Text style={style.TxtRegis2}>Masuk ke akun anda</Text>
+                <Text style={style.TxtRegis}>Selamat Datang</Text>
+                <Text style={style.TxtRegis2}>Silahkan Buat Akun Anda</Text>
             </View>
 
             <View style={style.WrapperInput}>
+
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/user.png')}
+                            style={style.icoAdd} />
+                    </View>
+
+                    <TextInput
+                        placeholder="Nama"
+                        style={style.textInput}
+                    />
+                </View>
+
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/telephone.png')}
+                            style={style.icoAdd} />
+                    </View>
+
+                    <TextInput
+                        placeholder="No Telphone"
+                        style={style.textInput}
+                    />
+                </View>
 
                 <View style={style.Flex}>
                     <View style={style.FlexIcon}>
@@ -30,6 +50,7 @@ const Register = ({navigation}) => {
                         style={style.textInput}
                     />
                 </View>
+
                 <View style={style.Flex}>
                     <View style={style.FlexIcon}>
                         <Image
@@ -42,11 +63,23 @@ const Register = ({navigation}) => {
                         secureTextEntry
                     />
                 </View>
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/lock.png')}
+                            style={style.icoLock} />
+                    </View>
+                    <TextInput
+                        placeholder="Masukan Ulang Password"
+                        style={style.textInput}
+                        secureTextEntry
+                    />
+                </View>
 
             </View>
 
             <TouchableOpacity
-            onPress={() => navigation.navigate('HomeSC')}>
+                onPress={() => navigation.navigate('HomeSC')}>
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Daftar</Text>
                 </View>
@@ -121,16 +154,16 @@ const style = StyleSheet.create({
     },
     WrapperRegister: {
         alignItems: 'center',
-        marginTop: 30,
+        marginVertical: 25
     },
     TxtRegis: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 24,
         color: '#00AA13',
     },
     TxtRegis2: {
         fontWeight: 'bold',
-        fontSize: 14,
+        fontSize: 16,
         color: '#0FDC26'
     },
     WrapperInput: {

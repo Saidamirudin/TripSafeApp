@@ -2,7 +2,6 @@ import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SplashScreen from "./src/screen/SplashSC";
 import Login from "./src/screen/Login";
 import Register from "./src/screen/Register";
@@ -15,6 +14,8 @@ import MapsDetail from "./src/screen/MapsDetail";
 import Chart from "./src/screen/Chart";
 import { Image } from "react-native";
 import Merchant from "./src/screen/Merchant";
+import KatalogMerchant from "./src/screen/KatalogMerchant";
+
 
 
 const Tab = createBottomTabNavigator();
@@ -23,7 +24,13 @@ const Stack = createNativeStackNavigator();
 const MyStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#00AA13'
+                }
+            }}
+            >
                 <Stack.Screen
                     name="SplashScreen"
                     component={SplashScreen}
@@ -51,7 +58,19 @@ const MyStack = () => {
                 <Stack.Screen
                     name="Merchant"
                     component={Merchant}
-                    options={{ headerShown: false }} />
+                    options={{
+                        title: "Profil Merchant",
+                        headerTintColor: 'white',
+                        headerTitleAlign: 'center'
+                    }}/>
+                    <Stack.Screen
+                    name="KatalogMerchant"
+                    component={KatalogMerchant}
+                    options={{
+                        title: "Katalog Merchant",
+                        headerTintColor: 'white',
+                        headerTitleAlign: 'center'
+                    }}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

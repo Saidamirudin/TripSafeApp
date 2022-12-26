@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+// import MapboxGL from '@rnmapbox/maps'
+
+// MapboxGL.setAccessToken("pk.eyJ1Ijoic2FpZGFtbWlyLTgwIiwiYSI6ImNsYnlzMG52ZzJoeDEzbm50NDhneGs5NTAifQ.q_dkQuhpEW6WqtwK9myGWA");
+// MapboxGL.setWellKnownTileServer(MapboxGL.Mapbox);
+// MapboxGL.setWellKnownTileServer("Mapbox");
 
 const style = StyleSheet.create({
     topText: {
@@ -16,7 +21,7 @@ const style = StyleSheet.create({
     },
     wrapMapbox: {
         height: 590,
-        backgroundColor: 'skyblue'
+        backgroundColor: 'skyblue '
     },
     wrapLocation: {
         height: 60,
@@ -55,6 +60,9 @@ const style = StyleSheet.create({
 })
 
 const Maps = () => {
+
+    // const [coordinates] = useState([8.674252499999994, 9.0845755]);
+
     return (
         <View>
             <View style={style.topText}>
@@ -63,7 +71,11 @@ const Maps = () => {
                 </Text>
             </View>
             <View style={style.wrapMapbox}>
-
+                {/* <MapboxGL.MapView style={style.wrapMapbox}>
+                    <MapboxGL.Camera zoomLevel={6}
+                        centerCoordinate={coordinates} />
+                    <MapboxGL.PointAnnotation coordinate={coordinates} />
+                </MapboxGL.MapView> */}
             </View>
             <View style={style.wrapLocation}>
                 <View style={style.detInfo}>
@@ -85,4 +97,4 @@ const Maps = () => {
     )
 }
 
-export default Maps
+export default Maps;
