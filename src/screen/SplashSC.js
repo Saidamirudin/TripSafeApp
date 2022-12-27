@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 const SplashScreen = ({ navigation }) => {
 
@@ -12,10 +12,8 @@ const SplashScreen = ({ navigation }) => {
     return (
         <View>
             <View style={stylesSplash.flexRoot}>
-                <Text style={stylesSplash.Text1}>myTrip </Text>
-                <Text style={stylesSplash.Text2}>safe</Text>
+                <Image source={require('../asset/image/LOGO.png')}/>
             </View>
-            <Text style={stylesSplash.Text3}>Nikmati Perjalanan Anda Dengan Aman</Text>
             <View>
                 <Text style={stylesSplash.Text4}>Powered by Said Amirudin</Text>
             </View>
@@ -27,29 +25,13 @@ export default SplashScreen;
 
 
 const stylesSplash = StyleSheet.create({
-    Text1: {
-        color: 'black',
-        fontSize: 40,
-        marginTop: 100,
-        fontWeight: 'bold'
-    },
-    Text2: {
-        color: 'green',
-        fontSize: 40,
-        marginTop: 100,
-        fontWeight: 'bold'
-    },
     flexRoot: {
         flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    Text3: {
-        fontSize: 10,
-        fontFamily: 'arial',
-        marginLeft: 140
+        justifyContent: 'center',
+        marginTop: 140
     },
     Text4: {
         textAlign: 'center',
-        marginTop: 550
+        marginTop: 500
     }
 });

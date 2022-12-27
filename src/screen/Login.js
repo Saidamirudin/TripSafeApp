@@ -1,10 +1,27 @@
-import React from 'react'
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react'
 import {
     View, Text, Image,
     TextInput, TouchableOpacity, StyleSheet
 } from 'react-native'
+r
 
-const Login = ({ navigation }) => {
+import { firebase } from '../../config';
+
+
+const Login = () => {
+    const navigation = useNavigation;
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    loginUser = async (email, password) => {
+        try {
+            await firebase.auth().signInWithEmailAndPassword(email, password)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
     return (
         <View>
             <View style={style.WrapperJudul}>
@@ -31,6 +48,9 @@ const Login = ({ navigation }) => {
                     <TextInput
                         placeholder="Email"
                         style={style.textInput}
+                        onChangeText = {(email) => setEmail(email)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
                     />
                 </View>
                 <View style={style.Flex}>
@@ -43,13 +63,17 @@ const Login = ({ navigation }) => {
                         placeholder="Password"
                         style={style.textInput}
                         secureTextEntry
+                        onChangeText = {(password) => setPassword(password)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
                     />
                 </View>
 
             </View>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('Register')}>
+                onPress={() => navigation.navigate('HomeSC')}
+            >
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Masuk</Text>
                 </View>
@@ -62,6 +86,14 @@ const Login = ({ navigation }) => {
                     style={style.google}
                     source={require('../asset/icon/google.png')} />
             </TouchableOpacity>
+
+            <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 30 }}>
+                <Text style={{ fontSize: 15, fontWeight: '500' }}>Belum Memiliki Akun?</Text>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Register')}>
+                    <Text style={{ color: "#00AA13", fontSize: 15, fontWeight: 'bold', marginLeft: 10 }}>Daftar Sekarang</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }

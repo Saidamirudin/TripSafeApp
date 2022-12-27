@@ -79,7 +79,7 @@ const Register = ({ navigation }) => {
             </View>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('HomeSC')}>
+                >
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Daftar</Text>
                 </View>
@@ -92,6 +92,14 @@ const Register = ({ navigation }) => {
                     style={style.google}
                     source={require('../asset/icon/google.png')} />
             </TouchableOpacity>
+
+            <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: 20}}>
+                <Text style={{fontSize: 15, fontWeight: '500'}}>Sudah Memiliki Akun?</Text>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('Login')}>
+                    <Text style={{color: "#00AA13", fontSize: 15, fontWeight: 'bold', marginLeft: 10}}>Masuk</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -169,8 +177,8 @@ const style = StyleSheet.create({
     WrapperInput: {
         textAlign: 'center',
         alignSelf: 'center',
-        marginTop: 20,
-        marginBottom: 20,
+        marginTop: 10,
+        marginBottom: 15,
     },
     viewButton: {
         width: 370,
@@ -193,11 +201,11 @@ const style = StyleSheet.create({
         color: '#1E1E1E'
     },
     google: {
-        width: 80,
-        height: 80,
-        borderRadius: 80 / 2,
+        width: 60,
+        height: 60,
+        borderRadius: 60 / 2,
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 20
     },
 
 })
