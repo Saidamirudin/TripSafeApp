@@ -15,6 +15,7 @@ import Chart from "./src/screen/Chart";
 import { Image } from "react-native";
 import Merchant from "./src/screen/Merchant";
 import KatalogMerchant from "./src/screen/KatalogMerchant";
+import ResetPasswordScren from "./src/screen/ResetPasswordScren";
 
 
 
@@ -25,11 +26,11 @@ const MyStack = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#00AA13'
-                }
-            }}
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: '#00AA13'
+                    }
+                }}
             >
                 <Stack.Screen
                     name="SplashScreen"
@@ -62,15 +63,19 @@ const MyStack = () => {
                         title: "Profil Merchant",
                         headerTintColor: 'white',
                         headerTitleAlign: 'center'
-                    }}/>
-                    <Stack.Screen
+                    }} />
+                <Stack.Screen
                     name="KatalogMerchant"
                     component={KatalogMerchant}
                     options={{
                         title: "Katalog Merchant",
                         headerTintColor: 'white',
                         headerTitleAlign: 'center'
-                    }}/>
+                    }} />
+                <Stack.Screen
+                    name="ResetPasswordScreen"
+                    component={ResetPasswordScren}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -94,27 +99,27 @@ const TabNav = () => {
 
             <Tab.Screen name="Home" component={Home} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/home.png')} />
+                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/home.png')} />
             }}
             />
             <Tab.Screen name="Chart" component={Chart} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/cart.png')} />
+                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/cart.png')} />
             }}
             />
             <Tab.Screen name="Maps" component={Maps} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image  source={require('./src/asset/icon/maps-nav.png')} />
+                tabBarIcon: () => <Image source={require('./src/asset/icon/maps-nav.png')} />
             }}
             />
             <Tab.Screen name="History" component={History} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/history.png')} />
+                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/history.png')} />
             }}
             />
             <Tab.Screen name="Profil" component={Profil} options={{
                 headerShown: false,
-                tabBarIcon: () => <Image style={{width: 30, height: 30}} source={require('./src/asset/icon/profil.png')} />
+                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/profil.png')} />
             }}
             />
 

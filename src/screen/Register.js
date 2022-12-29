@@ -1,181 +1,142 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Image } from 'react-native'
-import firebase from '../database/firebase';
+import { emailValidator } from '../helpers/emailValidator'
+import { passwordValidator } from '../helpers/passwordValidator'
+import { nameValidator } from '../helpers/nameValidator'
+import { signUpUser } from '../api/auth-api'
+import Toast from '../components/Toast'
 
-export default class Register extends Component {
+const Register = ({ navigation }) => {
+    const [name, setName] = useState({ value: '', error: '' })
+    const [email, setEmail] = useState({ value: '', error: '' })
+    const [password, setPassword] = useState({ value: '', error: '' })
+    const [loading, setLoading] = useState()
+    const [error, setError] = useState()
 
-    constructor() {
-        super();r
-        this.state = {
-            displayName: '',
-            noTelphone: '',
-            email: '',
-            password: '',
-            rptPassword: ''
+    const onSignUpPressed = async () => {
+        const nameError = nameValidator(name.value)
+        const emailError = emailValidator(email.value)
+        const passwordError = passwordValidator(password.value)
+        if (emailError || passwordError || nameError) {
+            setName({ ...name, error: nameError })
+            setEmail({ ...email, error: emailError })
+            setPassword({ ...password, error: passwordError })
+            return
         }
+        setLoading(true)
+        const response = await signUpUser({
+            name: name.value,
+            email: email.value,
+            password: password.value,
+        })
+        if (response.error) {
+            setError(response.error)
+        }
+        setLoading(false)
     }
 
-    updateInputVal = (val, prop) => {
-        const state = this.state;
-        state[prop] = val;
-        this.setState(state);
-    }
-
-    registerUser = () => {
-        if (this.state.email === '' && this.state.password === '') {
-            Alert.alert('Enter details to signup!')
-        } else {
-            this.setState({
-                isLoading: true,
-            })
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .then((res) => {
-                    res.user.updateProfile({
-                        displayName: this.state.displayName
-                    })
-                    console.log('User registered successfully!')
-                    this.setState({
-                        isLoading: false,
-                        displayName: '',
-                        noTelphone: '',
-                        email: '',
-                        password: '',
-                        rptPassword: ''
-                    })
-                    this.props.navigation.navigate('Login')
-                })
-                .catch(error => this.setState({ errorMessage: error.message }))
-        }
-    }
-
-
-    render() {
-        if (this.state.isLoading) {
-            return (
-                <View style={style.preloader}>
-                    <ActivityIndicator size="large" color="#9E9E9E" />
-                </View>
-            )
-        }
-
-        return (
-            <View>
-                <View style={style.WrapperRegister}>
-                    <Text style={style.TxtRegis}>Selamat Datang</Text>
-                    <Text style={style.TxtRegis2}>Silahkan Buat Akun Anda</Text>
-                </View>
-
-                <View style={style.WrapperInput}>
-
-                    <View style={style.Flex}>
-                        <View style={style.FlexIcon}>
-                            <Image
-                                source={require('../asset/icon/user.png')}
-                                style={style.icoAdd} />
-                        </View>
-
-                        <TextInput
-                            placeholder="Nama"
-                            style={style.textInput}
-                            value={this.state.displayName}
-                            onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-                        />
-                    </View>
-
-                    <View style={style.Flex}>
-                        <View style={style.FlexIcon}>
-                            <Image
-                                source={require('../asset/icon/telephone.png')}
-                                style={style.icoAdd}
-                            />
-                        </View>
-
-                        <TextInput
-                            placeholder="No Telphone"
-                            style={style.textInput}
-                            value={this.state.noTelphone}
-                            onChangeText={(val) => this.updateInputVal(val, 'noTelphone')}
-                        />
-                    </View>
-
-                    <View style={style.Flex}>
-                        <View style={style.FlexIcon}>
-                            <Image
-                                source={require('../asset/icon/@add.png')}
-                                style={style.icoAdd} />
-                        </View>
-
-                        <TextInput
-                            placeholder="Email"
-                            style={style.textInput}
-                            value={this.state.email}
-                            onChangeText={(val) => this.updateInputVal(val, 'email')}
-                        />
-                    </View>
-
-                    <View style={style.Flex}>
-                        <View style={style.FlexIcon}>
-                            <Image
-                                source={require('../asset/icon/lock.png')}
-                                style={style.icoLock} />
-                        </View>
-                        <TextInput
-                            placeholder="Password"
-                            style={style.textInput}
-                            secureTextEntry
-                            value={this.state.password}
-                            onChangeText={(val) => this.updateInputVal(val, 'password')}
-                        />
-                    </View>
-                    <View style={style.Flex}>
-                        <View style={style.FlexIcon}>
-                            <Image
-                                source={require('../asset/icon/lock.png')}
-                                style={style.icoLock} />
-                        </View>
-                        <TextInput
-                            placeholder="Masukan Ulang Password"
-                            style={style.textInput}
-                            secureTextEntry
-                            value={this.state.rptPassword}
-                            onChangeText={(val) => this.updateInputVal(val, 'rptPassword')}
-                        />
-                    </View>
-
-                </View>
-
-                <TouchableOpacity
-                    onPress={() => this.registerUser()}
-                >
-                    <View style={style.viewButton}
-                    >
-                        <Text style={style.textLogin}>Daftar</Text>
-                    </View>
-                </TouchableOpacity>
-
-                <Text style={style.TxtBtm}>Daftar Dengan</Text>
-
-                <TouchableOpacity>
-                    <Image
-                        style={style.google}
-                        source={require('../asset/icon/google.png')} />
-                </TouchableOpacity>
-
-                <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 20 }}>
-                    <Text style={{ fontSize: 15, fontWeight: '500' }}>Sudah Memiliki Akun?</Text>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Login')}>
-                        <Text style={{ color: "#00AA13", fontSize: 15, fontWeight: 'bold', marginLeft: 10 }}>Masuk</Text>
-                    </TouchableOpacity>
-                </View>
+    return (
+        <View>
+            <View style={style.WrapperRegister}>
+                <Text style={style.TxtRegis}>Selamat Datang</Text>
+                <Text style={style.TxtRegis2}>Silahkan Buat Akun Anda</Text>
             </View>
-        )
-    }
+
+            <View style={style.WrapperInput}>
+
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/user.png')}
+                            style={style.icoAdd} />
+                    </View>
+
+                    <TextInput
+                        placeholder="Nama"
+                        style={style.textInput}
+                        returnKeyType="next"
+                        value={name.value}
+                        onChangeText={(text) => setName({ value: text, error: '' })}
+                        error={!!name.error}
+                        errorText={name.error}
+                    />
+                </View>
+
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/@add.png')}
+                            style={style.icoAdd} />
+                    </View>
+
+                    <TextInput
+                        placeholder="Email"
+                        style={style.textInput}
+                        returnKeyType="next"
+                        value={email.value}
+                        onChangeText={(text) => setEmail({ value: text, error: '' })}
+                        error={!!email.error}
+                        errorText={email.error}
+                        autoCapitalize="none"
+                        autoCompleteType="email"
+                        textContentType="emailAddress"
+                        keyboardType="email-address"
+                    />
+                </View>
+
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/lock.png')}
+                            style={style.icoLock} />
+                    </View>
+                    <TextInput
+                        placeholder="Password"
+                        style={style.textInput}
+                        returnKeyType="done"
+                        value={password.value}
+                        onChangeText={(text) => setPassword({ value: text, error: '' })}
+                        error={!!password.error}
+                        errorText={password.error}
+                        secureTextEntry
+                    />
+                </View>
+
+            </View>
+
+            <TouchableOpacity
+                loading={loading}
+                mode="contained"
+                onPress={onSignUpPressed}
+            >
+                <View style={style.viewButton}
+                >
+                    <Text style={style.textLogin}>Daftar</Text>
+                </View>
+            </TouchableOpacity>
+
+            <Text style={style.TxtBtm}>Daftar Dengan</Text>
+
+            <TouchableOpacity>
+                <Image
+                    style={style.google}
+                    source={require('../asset/icon/google.png')} />
+            </TouchableOpacity>
+
+            <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 20 }}>
+                <Text style={{ fontSize: 15, fontWeight: '500' }}>Sudah Memiliki Akun?</Text>
+                <TouchableOpacity
+                    onPress={() => navigation.replace('Login')}>
+                    <Text style={{ color: "#00AA13", fontSize: 15, fontWeight: 'bold', marginLeft: 10 }}>Masuk</Text>
+                </TouchableOpacity>
+            </View>
+
+            <Toast message={error} onDismiss={() => setError('')} />
+        </View>
+    )
 }
 
-
+export default Register;
 
 const style = StyleSheet.create({
     Flex: {

@@ -1,25 +1,38 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     View, Text, Image,
-    TextInput, TouchableOpacity, StyleSheet
+    TextInput, TouchableOpacity, StyleSheet, Button
 } from 'react-native'
-r
+import { emailValidator } from '../helpers/emailValidator'
+import { passwordValidator } from '../helpers/passwordValidator'
+import { loginUser } from '../api/auth-api'
+import Toast from '../components/Toast'
 
-import { firebase } from '../../config';
 
 
-const Login = () => {
-    const navigation = useNavigation;
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+const Login = ({ navigation }) => {
+    const [email, setEmail] = useState({ value: '', error: '' })
+    const [password, setPassword] = useState({ value: '', error: '' })
+    const [loading, setLoading] = useState()
+    const [error, setError] = useState()
 
-    loginUser = async (email, password) => {
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password)
-        } catch (error) {
-            alert(error.message)
+    const onLoginPressed = async () => {
+        const emailError = emailValidator(email.value)
+        const passwordError = passwordValidator(password.value)
+        if (emailError || passwordError) {
+            setEmail({ ...email, error: emailError })
+            setPassword({ ...password, error: passwordError })
+            return
         }
+        setLoading(true)
+        const response = await loginUser({
+            email: email.value,
+            password: password.value,
+        })
+        if (response.error) {
+            setError(response.error)
+        }
+        setLoading(false)
     }
 
     return (
@@ -47,10 +60,15 @@ const Login = () => {
 
                     <TextInput
                         placeholder="Email"
+                        returnKeyType="next"
                         style={style.textInput}
-                        onChangeText = {(email) => setEmail(email)}
+                        onChangeText={(text) => setEmail({ value: text, error: '' })}
+                        error={!!email.error}
+                        errorText={email.error}
                         autoCapitalize="none"
-                        autoCorrect={false}
+                        autoCompleteType="email"
+                        textContentType="emailAddress"
+                        keyboardType="email-address"
                     />
                 </View>
                 <View style={style.Flex}>
@@ -61,18 +79,28 @@ const Login = () => {
                     </View>
                     <TextInput
                         placeholder="Password"
+                        returnKeyType="done"
                         style={style.textInput}
+                        value={password.value}
+                        onChangeText={(text) => setPassword({ value: text, error: '' })}
+                        error={!!password.error}
+                        errorText={password.error}
                         secureTextEntry
-                        onChangeText = {(password) => setPassword(password)}
-                        autoCapitalize="none"
-                        autoCorrect={false}
                     />
+                </View>
+
+                <View style={style.forgotPassword}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ResetPasswordScreen')}
+                    >
+                        <Text style={style.forgot}>Forgot your password?</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('HomeSC')}
+                loading={loading} mode="contained" onPress={onLoginPressed}
             >
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Masuk</Text>
@@ -94,6 +122,8 @@ const Login = () => {
                     <Text style={{ color: "#00AA13", fontSize: 15, fontWeight: 'bold', marginLeft: 10 }}>Daftar Sekarang</Text>
                 </TouchableOpacity>
             </View>
+
+            <Toast message={error} onDismiss={() => setError('')} />
         </View>
     )
 }
@@ -200,5 +230,14 @@ const style = StyleSheet.create({
         borderRadius: 80 / 2,
         alignSelf: 'center',
         marginTop: 30
+    },
+    forgotPassword: {
+        width: '100%',
+        alignItems: 'flex-end',
+        marginBottom: 24,
+    },
+    forgot: {
+        fontSize: 13,
+        color: '#000',
     },
 });
