@@ -16,8 +16,13 @@ import { Image } from "react-native";
 import Merchant from "./src/screen/Merchant";
 import KatalogMerchant from "./src/screen/KatalogMerchant";
 import ResetPasswordScren from "./src/screen/ResetPasswordScren";
+import  firebase  from "firebase/app";
 
+// import { FIREBASE_CONFIG } from "./src/core/config";
 
+// if (!firebase.apps.length) {
+//     firebase.initializeApp(FIREBASE_CONFIG)
+// }
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

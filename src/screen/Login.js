@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View, Text, Image,
     TextInput, TouchableOpacity, StyleSheet, Button
 } from 'react-native'
-import { emailValidator } from '../helpers/emailValidator'
-import { passwordValidator } from '../helpers/passwordValidator'
-import { loginUser } from '../api/auth-api'
+import emailValidator from '../helpers/emailValidator'
+import passwordValidator from '../helpers/passwordValidator'
+import loginUser from '../api/auth-api'
 import Toast from '../components/Toast'
-
 
 
 const Login = ({ navigation }) => {
@@ -100,8 +99,9 @@ const Login = ({ navigation }) => {
             </View>
 
             <TouchableOpacity
-                loading={loading} mode="contained" onPress={onLoginPressed}
-            >
+                // loading={loading}
+                // onPress={onLoginPressed}
+                onPress= {() => navigation.navigate('HomeSC')}>
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Masuk</Text>
                 </View>

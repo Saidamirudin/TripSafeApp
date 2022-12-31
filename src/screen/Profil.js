@@ -1,5 +1,6 @@
 import React from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { logoutUser } from '../api/auth-api'
 
 const style = StyleSheet.create({
     topText: {
@@ -68,8 +69,23 @@ const style = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    logout: {
+        width: 370,
+        height: 50,
+        marginHorizontal: 20,
+        backgroundColor: '#EA4335',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        elevation: 3
+    },
+    txtLogout: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold'
     }
-})
+});
 
 const Profil = () => {
     return (
@@ -107,6 +123,11 @@ const Profil = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={style.simpan}>
                     <Text style={style.txtSimpan}>Simpan</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={style.logout}
+                onPress={logoutUser}>
+                    <Text style={style.txtLogout}>Keluar</Text>
                 </TouchableOpacity>
                 
         </View>

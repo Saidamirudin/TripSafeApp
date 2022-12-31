@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View,Button, TextInput,Header } from 'react-native'
 import { emailValidator } from '../helpers/emailValidator'
 import { sendEmailWithPassword } from '../api/auth-api'
