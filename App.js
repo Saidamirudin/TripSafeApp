@@ -12,11 +12,13 @@ import History from "./src/screen/History";
 import Profil from "./src/screen/Profil";
 import MapsDetail from "./src/screen/MapsDetail";
 import Chart from "./src/screen/Chart";
-import { Image } from "react-native";
+import { Image, Pressable, Touchable, TouchableOpacity } from "react-native";
 import Merchant from "./src/screen/Merchant";
 import KatalogMerchant from "./src/screen/KatalogMerchant";
 import ResetPasswordScren from "./src/screen/ResetPasswordScren";
-import  firebase  from "firebase/app";
+import firebase from "firebase/app";
+import DetailProduk from "./src/screen/DetailProduk";
+import DaftarPesanan from "./src/screen/DaftarPesanan";
 
 // import { FIREBASE_CONFIG } from "./src/core/config";
 
@@ -27,7 +29,7 @@ import  firebase  from "firebase/app";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const MyStack = () => {
+const MyStack = ({navigation}) => {
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -78,6 +80,24 @@ const MyStack = () => {
                         headerTitleAlign: 'center'
                     }} />
                 <Stack.Screen
+                    name="DetailProduk"
+                    component={DetailProduk}
+                    options={{
+                        title: "Detail Produk",
+                        headerTintColor: 'white',
+                        headerTitleAlign: 'center',
+                        headerRight:() => (
+                            <TouchableOpacity
+                            onPress={() => {navigation.navigate('DaftarPesanan')}}>
+                                <Image source={require('./src/asset/icon/cartmerchant.png')}/>
+                            </TouchableOpacity>
+                        ),
+                    }} />
+                <Stack.Screen
+                    name="DaftarPesanan"
+                    component={DaftarPesanan}
+                />
+                <Stack.Screen
                     name="ResetPasswordScreen"
                     component={ResetPasswordScren}
                 />
@@ -102,12 +122,12 @@ const TabNav = () => {
                 tabBarStyle: { height: 70, elevation: 5, paddingTop: 10 }
             }}>
 
-            <Tab.Screen name="Home" component={Home} options={{
+            <Tab.Screen name="Beranda" component={Home} options={{
                 headerShown: false,
                 tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/home.png')} />
             }}
             />
-            <Tab.Screen name="Chart" component={Chart} options={{
+            <Tab.Screen name="Keranjang" component={Chart} options={{
                 headerShown: false,
                 tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/cart.png')} />
             }}
@@ -117,7 +137,7 @@ const TabNav = () => {
                 tabBarIcon: () => <Image source={require('./src/asset/icon/maps-nav.png')} />
             }}
             />
-            <Tab.Screen name="History" component={History} options={{
+            <Tab.Screen name="Aktivitas" component={History} options={{
                 headerShown: false,
                 tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/history.png')} />
             }}

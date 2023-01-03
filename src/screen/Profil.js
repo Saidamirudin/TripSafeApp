@@ -26,6 +26,7 @@ const style = StyleSheet.create({
     txtWrap: {
         marginTop: 20,
         margin: 20,
+        flexDirection: 'row'
     },
     flxText: {
         marginVertical: 10,
@@ -74,6 +75,7 @@ const style = StyleSheet.create({
         width: 370,
         height: 50,
         marginHorizontal: 20,
+        marginVertical: 20,
         backgroundColor: '#EA4335',
         alignItems: 'center',
         justifyContent: 'center',
@@ -88,6 +90,12 @@ const style = StyleSheet.create({
 });
 
 const Profil = () => {
+
+    let namaUser = "Nur Said Amirudin";
+    let emailUser = "Saidammir80@gmail.com";
+    let noTelp = "085123456789";
+    let alamat = "Yogyakarta, Indonesia";
+
     return (
         <View>
             <View style={style.topText}>
@@ -101,21 +109,19 @@ const Profil = () => {
             </View>
 
             <View style={style.txtWrap}>
-                    <View style={style.flxText}>
+                    <View style={{
+                        marginRight: 20
+                    }}>
                         <Text style={style.txtHis}>Nama</Text>
-                        <Text style={style.txtHis2}>: Pengguna atau User</Text>
-                    </View>
-                    <View style={style.flxText}>
                         <Text style={style.txtHis}>Email</Text>
-                        <Text style={style.txtHis2}>: Useremail123@gmail.com</Text>
-                    </View>
-                    <View style={style.flxText}>
                         <Text style={style.txtHis}>Telephone</Text>
-                        <Text style={style.txtHis2}>: 085123245556</Text>
-                    </View>
-                    <View style={style.flxText}>
                         <Text style={style.txtHis}>Alamat</Text>
-                        <Text style={style.txtHis2}>: Tempat dan Alamat Pengguna</Text>
+                    </View>
+                    <View>
+                        <Text style={style.txtHis2}>: {namaUser}</Text>
+                        <Text style={style.txtHis2}>: {emailUser}</Text>
+                        <Text style={style.txtHis2}>: {noTelp}</Text>
+                        <Text style={style.txtHis2}>: {alamat}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={style.edit}>
