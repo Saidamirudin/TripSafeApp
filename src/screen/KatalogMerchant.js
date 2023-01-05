@@ -87,6 +87,39 @@ const KatalogMerchant = ({navigation}) => {
                         <Text style={style.txtHarga}>Rp {harga}</Text>
                     </View>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('DetailProduk')}>
+                    <View style={style.linkProduk}>
+                        <Image
+                        style={style.imgProduk}
+                        source={require('../asset/image/lokasi.png')} />
+                        <Text style={style.txtNamaProduk}>{namaProduk}</Text>
+                        <Text style={style.txtHarga}>Rp {harga}</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('DetailProduk')}>
+                    <View style={style.linkProduk}>
+                        <Image
+                        style={style.imgProduk}
+                        source={require('../asset/image/lokasi.png')} />
+                        <Text style={style.txtNamaProduk}>{namaProduk}</Text>
+                        <Text style={style.txtHarga}>Rp {harga}</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('DetailProduk')}>
+                    <View style={style.linkProduk}>
+                        <Image
+                        style={style.imgProduk}
+                        source={require('../asset/image/lokasi.png')} />
+                        <Text style={style.txtNamaProduk}>{namaProduk}</Text>
+                        <Text style={style.txtHarga}>Rp {harga}</Text>
+                    </View>
+                </TouchableOpacity>
                 
                 
 

@@ -57,7 +57,8 @@ const style = StyleSheet.create({
         padding: 10,
         backgroundColor: '#fff',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     txtBooking: {
         fontSize: 16,
@@ -66,11 +67,31 @@ const style = StyleSheet.create({
     },
     bookingWrap: {
         flexDirection: 'row',
-        marginLeft: 200
     },
     txtJumlah: {
         marginHorizontal: 10,
         fontWeight: '900'
+    },
+    wrap4:{
+        marginTop: 10,
+        padding: 10,
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    txtTotal: {
+        fontSize: 16,
+        color: '#000',
+        fontWeight: '400'
+    },
+    hargawrap: {
+        alignItems: 'center'
+    },
+    totalharga:{
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#EA4335',
     }
 })
 
@@ -111,7 +132,13 @@ const DetailProduk = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View>
+            <View style={style.wrap4}>
+                <Text style={style.txtTotal}>Total Harga</Text>
+                <View style={style.hargawrap}>
+                    <Text style={style.totalharga}>Rp {harga}</Text>
+                </View>
+            </View>
+            <View style={{backgroundColor: '#fff', marginTop: 50}}>
                 <TouchableOpacity style={style.buttonBTM}
                 // onPress={() => navigation.navigate('KatalogMerchant')}
                 >

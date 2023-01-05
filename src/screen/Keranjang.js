@@ -56,7 +56,7 @@ const style = StyleSheet.create({
     }
 })
 
-const BoxChart = () =>{
+const BoxCart = () =>{
 
     let date = '12 Desember 2022';
     let namaBarang = 'Oli MPX MiO 123';
@@ -83,7 +83,7 @@ const BoxChart = () =>{
     )
 }
 
-const Chart = () => {
+const Keranjang = () => {
     return (
         <ScrollView>
             <View style={style.topText}>
@@ -92,12 +92,12 @@ const Chart = () => {
                 </Text>
             </View>
 
-            <BoxChart/>
-            <BoxChart/>
-            <BoxChart/>
+            <BoxCart/>
+            <BoxCart/>
+            <BoxCart/>
 
         </ScrollView>
     )
 }
 
-export default Chart
+export default Keranjang

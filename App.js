@@ -11,14 +11,15 @@ import Maps from "./src/screen/Maps";
 import History from "./src/screen/History";
 import Profil from "./src/screen/Profil";
 import MapsDetail from "./src/screen/MapsDetail";
-import Chart from "./src/screen/Chart";
-import { Image, Pressable, Touchable, TouchableOpacity } from "react-native";
+import { Image, Pressable, Touchable, TouchableOpacity, View } from "react-native";
 import Merchant from "./src/screen/Merchant";
 import KatalogMerchant from "./src/screen/KatalogMerchant";
 import ResetPasswordScren from "./src/screen/ResetPasswordScren";
-import firebase from "firebase/app";
 import DetailProduk from "./src/screen/DetailProduk";
 import DaftarPesanan from "./src/screen/DaftarPesanan";
+import Pembayaran from "./src/screen/Pembayaran";
+import VerifikasiPembayaran from "./src/screen/VerifikasiPembayaran";
+import Keranjang from "./src/screen/Keranjang";
 
 // import { FIREBASE_CONFIG } from "./src/core/config";
 
@@ -28,6 +29,16 @@ import DaftarPesanan from "./src/screen/DaftarPesanan";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const  RenderUserMenu = (navigation) => {
+    return (
+        <TouchableOpacity
+        onPress={() => navigation.navigate('DaftarPesanan')}
+        >
+            <Image source={require('./src/asset/icon/cartmerchant.png')}/>
+        </TouchableOpacity>
+    )
+}
 
 const MyStack = ({navigation}) => {
     return (
@@ -76,26 +87,49 @@ const MyStack = ({navigation}) => {
                     component={KatalogMerchant}
                     options={{
                         title: "Katalog Merchant",
-                        headerTintColor: 'white',
+                        headerTintColor: '#fff',
                         headerTitleAlign: 'center'
                     }} />
                 <Stack.Screen
                     name="DetailProduk"
                     component={DetailProduk}
-                    options={{
+                    options = {({navigation})=>({
                         title: "Detail Produk",
-                        headerTintColor: 'white',
+                        headerTintColor: '#fff',
                         headerTitleAlign: 'center',
-                        headerRight:() => (
-                            <TouchableOpacity
-                            onPress={() => {navigation.navigate('DaftarPesanan')}}>
-                                <Image source={require('./src/asset/icon/cartmerchant.png')}/>
-                            </TouchableOpacity>
+                        headerRight: () => (
+                            <View>
+                                {RenderUserMenu(navigation)}
+                            </View>
                         ),
-                    }} />
+                    })}
+                />
                 <Stack.Screen
                     name="DaftarPesanan"
                     component={DaftarPesanan}
+                    options={()=>({
+                        title: "Daftar Pesanan",
+                        headerTintColor: '#fff',
+                        headerTitleAlign: 'center'
+                    })}
+                />
+                <Stack.Screen
+                    name="PembayaranPesanan"
+                    component={Pembayaran}
+                    options={()=>({
+                        title: "Pembayaran",
+                        headerTintColor: '#fff',
+                        headerTitleAlign: 'center'
+                    })}
+                />
+                <Stack.Screen
+                    name="VerifikasiPembayaran"
+                    component={VerifikasiPembayaran}
+                    options={()=>({
+                        title: "Verifikasi Pembayaran",
+                        headerTintColor: '#fff',
+                        headerTitleAlign: 'center'
+                    })}
                 />
                 <Stack.Screen
                     name="ResetPasswordScreen"
@@ -127,7 +161,7 @@ const TabNav = () => {
                 tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/home.png')} />
             }}
             />
-            <Tab.Screen name="Keranjang" component={Chart} options={{
+            <Tab.Screen name="Keranjang" component={Keranjang} options={{
                 headerShown: false,
                 tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={require('./src/asset/icon/cart.png')} />
             }}
