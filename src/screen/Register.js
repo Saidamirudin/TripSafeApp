@@ -1,42 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Image } from 'react-native'
-import { emailValidator } from '../helpers/emailValidator'
-import { passwordValidator } from '../helpers/passwordValidator'
-import { nameValidator } from '../helpers/nameValidator'
-import { signUpUser } from '../api/auth-api'
-import Toast from '../components/Toast'
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 const Register = ({ navigation }) => {
-    const [name, setName] = useState({ value: '', error: '' })
-    const [email, setEmail] = useState({ value: '', error: '' })
-    const [password, setPassword] = useState({ value: '', error: '' })
-    const [loading, setLoading] = useState()
-    const [error, setError] = useState()
 
-    const onSignUpPressed = async () => {
-        const nameError = nameValidator(name.value)
-        const emailError = emailValidator(email.value)
-        const passwordError = passwordValidator(password.value)
-        if (emailError || passwordError || nameError) {
-            setName({ ...name, error: nameError })
-            setEmail({ ...email, error: emailError })
-            setPassword({ ...password, error: passwordError })
-            return
-        }
-        setLoading(true)
-        const response = await signUpUser({
-            name: name.value,
-            email: email.value,
-            password: password.value,
-        })
-        if (response.error) {
-            setError(response.error)
-        }
-        setLoading(false)
-    }
+    const [name, setName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [Confpassword, setConfPassword] = useState(null);
+    const { isLoading, register, error } = useContext(AuthContext);
 
     return (
         <View>
+            <Spinner visible={isLoading}/>
             <View style={style.WrapperRegister}>
                 <Text style={style.TxtRegis}>Selamat Datang</Text>
                 <Text style={style.TxtRegis2}>Silahkan Buat Akun Anda</Text>
@@ -54,11 +31,8 @@ const Register = ({ navigation }) => {
                     <TextInput
                         placeholder="Nama"
                         style={style.textInput}
-                        returnKeyType="next"
-                        value={name.value}
-                        onChangeText={(text) => setName({ value: text, error: '' })}
-                        error={!!name.error}
-                        errorText={name.error}
+                        value={name}
+                        onChangeText={text => setName(text)}
                     />
                 </View>
 
@@ -72,15 +46,8 @@ const Register = ({ navigation }) => {
                     <TextInput
                         placeholder="Email"
                         style={style.textInput}
-                        returnKeyType="next"
-                        value={email.value}
-                        onChangeText={(text) => setEmail({ value: text, error: '' })}
-                        error={!!email.error}
-                        errorText={email.error}
-                        autoCapitalize="none"
-                        autoCompleteType="email"
-                        textContentType="emailAddress"
-                        keyboardType="email-address"
+                        value={email}
+                        onChangeText={text => setEmail(text)}
                     />
                 </View>
 
@@ -93,21 +60,32 @@ const Register = ({ navigation }) => {
                     <TextInput
                         placeholder="Password"
                         style={style.textInput}
-                        returnKeyType="done"
-                        value={password.value}
-                        onChangeText={(text) => setPassword({ value: text, error: '' })}
-                        error={!!password.error}
-                        errorText={password.error}
                         secureTextEntry
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                </View>
+                <View style={style.Flex}>
+                    <View style={style.FlexIcon}>
+                        <Image
+                            source={require('../asset/icon/lock.png')}
+                            style={style.icoLock} />
+                    </View>
+                    <TextInput
+                        placeholder="Confirm Password"
+                        style={style.textInput}
+                        secureTextEntry
+                        value={Confpassword}
+                        onChangeText={text => setConfPassword(text)}
                     />
                 </View>
 
             </View>
 
             <TouchableOpacity
-                loading={loading}
-                mode="contained"
-                onPress={onSignUpPressed}
+                onPress={() => {
+                    register(name, email, password, Confpassword, navigation);
+                }}
             >
                 <View style={style.viewButton}
                 >

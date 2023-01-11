@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -20,7 +20,7 @@ import DaftarPesanan from "./src/screen/DaftarPesanan";
 import Pembayaran from "./src/screen/Pembayaran";
 import VerifikasiPembayaran from "./src/screen/VerifikasiPembayaran";
 import Keranjang from "./src/screen/Keranjang";
-
+import { AuthContext } from "./src/context/AuthContext";
 // import { FIREBASE_CONFIG } from "./src/core/config";
 
 // if (!firebase.apps.length) {
@@ -30,17 +30,18 @@ import Keranjang from "./src/screen/Keranjang";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const  RenderUserMenu = (navigation) => {
+const RenderUserMenu = (navigation) => {
     return (
         <TouchableOpacity
-        onPress={() => navigation.navigate('DaftarPesanan')}
+            onPress={() => navigation.navigate('DaftarPesanan')}
         >
-            <Image source={require('./src/asset/icon/cartmerchant.png')}/>
+            <Image source={require('./src/asset/icon/cartmerchant.png')} />
         </TouchableOpacity>
     )
 }
 
-const MyStack = ({navigation}) => {
+const MyStack = () => {
+    const { userInfo, splashLoading } = useContext(AuthContext);
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -50,91 +51,100 @@ const MyStack = ({navigation}) => {
                     }
                 }}
             >
-                <Stack.Screen
-                    name="SplashScreen"
-                    component={SplashScreen}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="Login"
-                    component={Login}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="Register"
-                    component={Register}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="HomeSC"
-                    component={TabNav}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="MapsMenu"
-                    component={MapsMenu}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="MapsDetail"
-                    component={MapsDetail}
-                    options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="Merchant"
-                    component={Merchant}
-                    options={{
-                        title: "Profil Merchant",
-                        headerTintColor: 'white',
-                        headerTitleAlign: 'center'
-                    }} />
-                <Stack.Screen
-                    name="KatalogMerchant"
-                    component={KatalogMerchant}
-                    options={{
-                        title: "Katalog Merchant",
-                        headerTintColor: '#fff',
-                        headerTitleAlign: 'center'
-                    }} />
-                <Stack.Screen
-                    name="DetailProduk"
-                    component={DetailProduk}
-                    options = {({navigation})=>({
-                        title: "Detail Produk",
-                        headerTintColor: '#fff',
-                        headerTitleAlign: 'center',
-                        headerRight: () => (
-                            <View>
-                                {RenderUserMenu(navigation)}
-                            </View>
-                        ),
-                    })}
-                />
-                <Stack.Screen
-                    name="DaftarPesanan"
-                    component={DaftarPesanan}
-                    options={()=>({
-                        title: "Daftar Pesanan",
-                        headerTintColor: '#fff',
-                        headerTitleAlign: 'center'
-                    })}
-                />
-                <Stack.Screen
-                    name="PembayaranPesanan"
-                    component={Pembayaran}
-                    options={()=>({
-                        title: "Pembayaran",
-                        headerTintColor: '#fff',
-                        headerTitleAlign: 'center'
-                    })}
-                />
-                <Stack.Screen
-                    name="VerifikasiPembayaran"
-                    component={VerifikasiPembayaran}
-                    options={()=>({
-                        title: "Verifikasi Pembayaran",
-                        headerTintColor: '#fff',
-                        headerTitleAlign: 'center'
-                    })}
-                />
-                <Stack.Screen
-                    name="ResetPasswordScreen"
-                    component={ResetPasswordScren}
-                />
+                {splashLoading ? (
+                    <Stack.Screen
+                        name="SplashScreen"
+                        component={SplashScreen}
+                        options={{ headerShown: false }} />
+                ) : userInfo.token ? (
+                    <Stack.Screen
+                        name="HomeSC"
+                        component={TabNav}
+                        options={{ headerShown: false }} />
+                ) : (
+                    <>
+                        <Stack.Screen
+                            name="Login"
+                            component={Login}
+                            options={{ headerShown: false }} />
+                        <Stack.Screen
+                            name="Register"
+                            component={Register}
+                            options={{ headerShown: false }} />
+
+                        <Stack.Screen
+                            name="MapsMenu"
+                            component={MapsMenu}
+                            options={{ headerShown: false }} />
+                        <Stack.Screen
+                            name="MapsDetail"
+                            component={MapsDetail}
+                            options={{ headerShown: false }} />
+                        <Stack.Screen
+                            name="Merchant"
+                            component={Merchant}
+                            options={{
+                                title: "Profil Merchant",
+                                headerTintColor: 'white',
+                                headerTitleAlign: 'center'
+                            }} />
+                        <Stack.Screen
+                            name="KatalogMerchant"
+                            component={KatalogMerchant}
+                            options={{
+                                title: "Katalog Merchant",
+                                headerTintColor: '#fff',
+                                headerTitleAlign: 'center'
+                            }} />
+                        <Stack.Screen
+                            name="DetailProduk"
+                            component={DetailProduk}
+                            options={({ navigation }) => ({
+                                title: "Detail Produk",
+                                headerTintColor: '#fff',
+                                headerTitleAlign: 'center',
+                                headerRight: () => (
+                                    <View>
+                                        {RenderUserMenu(navigation)}
+                                    </View>
+                                ),
+                            })}
+                        />
+                        <Stack.Screen
+                            name="DaftarPesanan"
+                            component={DaftarPesanan}
+                            options={() => ({
+                                title: "Daftar Pesanan",
+                                headerTintColor: '#fff',
+                                headerTitleAlign: 'center'
+                            })}
+                        />
+                        <Stack.Screen
+                            name="PembayaranPesanan"
+                            component={Pembayaran}
+                            options={() => ({
+                                title: "Pembayaran",
+                                headerTintColor: '#fff',
+                                headerTitleAlign: 'center'
+                            })}
+                        />
+                        <Stack.Screen
+                            name="VerifikasiPembayaran"
+                            component={VerifikasiPembayaran}
+                            options={() => ({
+                                title: "Verifikasi Pembayaran",
+                                headerTintColor: '#fff',
+                                headerTitleAlign: 'center'
+                            })}
+                        />
+                        <Stack.Screen
+                            name="ResetPasswordScreen"
+                            component={ResetPasswordScren}
+                        />
+                    </>
+                )}
+
+
             </Stack.Navigator>
         </NavigationContainer>
     );

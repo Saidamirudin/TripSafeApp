@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import Spinner from 'react-native-loading-spinner-overlay';
+import { AuthContext } from '../context/AuthContext';
 
 
 const style = StyleSheet.create({
@@ -150,12 +152,16 @@ const style = StyleSheet.create({
 
 
 const Home = ({ navigation }) => {
+    const {userInfo, isLoading, logout} = useContext(AuthContext);
     return (
         <ScrollView>
+            <Spinner visible={isLoading}/>
             <View style={style.wrapperTop}>
                 <View style={style.flexTop}>
-                    <Text style={style.txtTop}>Halo, Nur Said Amirudin</Text>
-                    <TouchableOpacity>
+                    <Text style={style.txtTop}>Halo,{userInfo.user.fullname}</Text>
+                    <TouchableOpacity
+                    onPress={logout}
+                    >
                         <Image source={require('../asset/icon/notif.png')}
                             style={style.icoNotif} />
                     </TouchableOpacity>

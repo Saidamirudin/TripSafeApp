@@ -1,41 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     View, Text, Image,
     TextInput, TouchableOpacity, StyleSheet, Button
 } from 'react-native'
-import emailValidator from '../helpers/emailValidator'
-import passwordValidator from '../helpers/passwordValidator'
-import loginUser from '../api/auth-api'
-import Toast from '../components/Toast'
-
+// import Toast from '../components/Toast'
+import Spinner from 'react-native-loading-spinner-overlay'
+import { AuthContext } from '../context/AuthContext'
 
 const Login = ({ navigation }) => {
-    const [email, setEmail] = useState({ value: '', error: '' })
-    const [password, setPassword] = useState({ value: '', error: '' })
-    const [loading, setLoading] = useState()
-    const [error, setError] = useState()
-
-    const onLoginPressed = async () => {
-        const emailError = emailValidator(email.value)
-        const passwordError = passwordValidator(password.value)
-        if (emailError || passwordError) {
-            setEmail({ ...email, error: emailError })
-            setPassword({ ...password, error: passwordError })
-            return
-        }
-        setLoading(true)
-        const response = await loginUser({
-            email: email.value,
-            password: password.value,
-        })
-        if (response.error) {
-            setError(response.error)
-        }
-        setLoading(false)
-    }
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+    const { isLoading, login, error } = useContext(AuthContext);
 
     return (
         <View>
+            <Spinner visible={isLoading} />
             <View style={style.WrapperJudul}>
                 <Image
                     source={require('../asset/image/LOGO.png')}
@@ -48,7 +27,14 @@ const Login = ({ navigation }) => {
                 <Text style={style.TxtRegis2}>Masuk ke akun anda</Text>
             </View>
 
+
+
             <View style={style.WrapperInput}>
+                {error ? (
+                    <Text style={{ color: 'red', fontSize: 18, textAlign: 'center' }}>
+                        {error}
+                    </Text>
+                ) : null}
 
                 <View style={style.Flex}>
                     <View style={style.FlexIcon}>
@@ -58,16 +44,12 @@ const Login = ({ navigation }) => {
                     </View>
 
                     <TextInput
-                        placeholder="Email"
-                        returnKeyType="next"
                         style={style.textInput}
-                        onChangeText={(text) => setEmail({ value: text, error: '' })}
-                        error={!!email.error}
-                        errorText={email.error}
-                        autoCapitalize="none"
-                        autoCompleteType="email"
-                        textContentType="emailAddress"
-                        keyboardType="email-address"
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                        label='Email'
+                        placeholder='example@email.com'
+                        autoCapitalize='none'
                     />
                 </View>
                 <View style={style.Flex}>
@@ -77,20 +59,19 @@ const Login = ({ navigation }) => {
                             style={style.icoLock} />
                     </View>
                     <TextInput
-                        placeholder="Password"
-                        returnKeyType="done"
                         style={style.textInput}
-                        value={password.value}
-                        onChangeText={(text) => setPassword({ value: text, error: '' })}
-                        error={!!password.error}
-                        errorText={password.error}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                        label='Password'
+                        placeholder='********'
+                        autoCapitalize='none'
                         secureTextEntry
                     />
                 </View>
 
                 <View style={style.forgotPassword}>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('ResetPasswordScreen')}
+                    // onPress={() => navigation.navigate('ResetPasswordScreen')}
                     >
                         <Text style={style.forgot}>Forgot your password?</Text>
                     </TouchableOpacity>
@@ -101,7 +82,9 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
                 // loading={loading}
                 // onPress={onLoginPressed}
-                onPress= {() => navigation.navigate('HomeSC')}>
+                onPress={() => {
+                    login(email, password);
+                }}>
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Masuk</Text>
                 </View>
@@ -123,7 +106,7 @@ const Login = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
 
-            <Toast message={error} onDismiss={() => setError('')} />
+            {/* <Toast message={error} onDismiss={() => setError('')} /> */}
         </View>
     )
 }

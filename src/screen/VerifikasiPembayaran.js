@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Button, Image } from 'react-native'
-import { launchImageLibrary } from 'react-native-image-picker';
+// import { launchImageLibrary } from 'react-native-image-picker';
 
-const SERVER_URL = 'http://localhost:3000';
+// const SERVER_URL = 'http://localhost:3000';
 
 const styles = StyleSheet.create({
     container: {
@@ -120,7 +120,7 @@ const UploadImage = () => {
                         style={{ width: 300, height: 300 }}
                     />
                     <Button title="Upload Photo"
-                        onPress={handleUploadPhoto}
+                        // onPress={handleUrploadPhoto}
                     />
                 </>
             )}
