@@ -3,18 +3,14 @@ import {
     View, Text, Image,
     TextInput, TouchableOpacity, StyleSheet, Button
 } from 'react-native'
-// import Toast from '../components/Toast'
-import Spinner from 'react-native-loading-spinner-overlay'
-import { AuthContext } from '../context/AuthContext'
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const { isLoading, login, error } = useContext(AuthContext);
 
     return (
         <View>
-            <Spinner visible={isLoading} />
+
             <View style={style.WrapperJudul}>
                 <Image
                     source={require('../asset/image/LOGO.png')}
@@ -30,11 +26,6 @@ const Login = ({ navigation }) => {
 
 
             <View style={style.WrapperInput}>
-                {error ? (
-                    <Text style={{ color: 'red', fontSize: 18, textAlign: 'center' }}>
-                        {error}
-                    </Text>
-                ) : null}
 
                 <View style={style.Flex}>
                     <View style={style.FlexIcon}>
@@ -82,9 +73,7 @@ const Login = ({ navigation }) => {
             <TouchableOpacity
                 // loading={loading}
                 // onPress={onLoginPressed}
-                onPress={() => {
-                    login(email, password);
-                }}>
+                onPress={() => navigation.navigate('HomeSC')}>
                 <View style={style.viewButton}>
                     <Text style={style.textLogin}>Masuk</Text>
                 </View>

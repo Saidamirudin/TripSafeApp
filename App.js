@@ -11,7 +11,7 @@ import Maps from "./src/screen/Maps";
 import History from "./src/screen/History";
 import Profil from "./src/screen/Profil";
 import MapsDetail from "./src/screen/MapsDetail";
-import { Image, Pressable, Touchable, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import Merchant from "./src/screen/Merchant";
 import KatalogMerchant from "./src/screen/KatalogMerchant";
 import ResetPasswordScren from "./src/screen/ResetPasswordScren";
@@ -20,12 +20,6 @@ import DaftarPesanan from "./src/screen/DaftarPesanan";
 import Pembayaran from "./src/screen/Pembayaran";
 import VerifikasiPembayaran from "./src/screen/VerifikasiPembayaran";
 import Keranjang from "./src/screen/Keranjang";
-import { AuthContext } from "./src/context/AuthContext";
-// import { FIREBASE_CONFIG } from "./src/core/config";
-
-// if (!firebase.apps.length) {
-//     firebase.initializeApp(FIREBASE_CONFIG)
-// }
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -41,7 +35,7 @@ const RenderUserMenu = (navigation) => {
 }
 
 const MyStack = () => {
-    const { userInfo, splashLoading } = useContext(AuthContext);
+    // const { userInfo, splashLoading } = useContext(AuthContext);
     return (
         <NavigationContainer>
             <Stack.Navigator
@@ -51,17 +45,17 @@ const MyStack = () => {
                     }
                 }}
             >
-                {splashLoading ? (
+                
                     <Stack.Screen
                         name="SplashScreen"
                         component={SplashScreen}
                         options={{ headerShown: false }} />
-                ) : userInfo.token ? (
+           
                     <Stack.Screen
                         name="HomeSC"
                         component={TabNav}
                         options={{ headerShown: false }} />
-                ) : (
+                
                     <>
                         <Stack.Screen
                             name="Login"
@@ -142,7 +136,6 @@ const MyStack = () => {
                             component={ResetPasswordScren}
                         />
                     </>
-                )}
 
 
             </Stack.Navigator>

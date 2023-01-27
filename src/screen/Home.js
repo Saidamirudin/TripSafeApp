@@ -1,8 +1,137 @@
 import React, { useContext } from 'react'
 import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay';
-import { AuthContext } from '../context/AuthContext';
 
+const Home = ({ navigation }) => {
+    // const {userInfo, isLoading, logout} = useContext(AuthContext);
+    return (
+        <ScrollView>
+            {/* <Spinner visible={isLoading}/> */}
+            <View style={style.wrapperTop}>
+                <View style={style.flexTop}>
+                    <Text style={style.txtTop}>Halo, Said Amirudin</Text>
+                    <TouchableOpacity
+                    // onPress={logout}
+                    >
+                        <Image source={require('../asset/icon/notif.png')}
+                            style={style.icoNotif} />
+                    </TouchableOpacity>
+
+                </View>
+
+                <View style={style.searchWrap}>
+                    <Image
+                        style={style.icoMaps}
+                        source={require('../asset/icon/maps.png')}
+                    />
+                    <TextInput
+                        placeholder='Telusuri di sini'
+                        style={style.searchInput}></TextInput>
+                    <View>
+                        <TouchableOpacity >
+                            <Image
+                                style={style.mic}
+                                source={require('../asset/icon/mic.png')} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+            </View>
+            <View style={style.wrapperLink}>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('MapsMenu')}>
+                    <View style={style.linkMenu1}>
+                        <Image
+                            source={require('../asset/icon/car.png')} />
+                    </View>
+                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Bengkel Mobil</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('Merchant')}>
+                    <View style={style.linkMenu2}>
+                        <Image
+                            source={require('../asset/icon/scooter.png')} />
+                    </View>
+                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Bengkel Motor</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('MapsMenu')}>
+                    <View style={style.linkMenu3}>
+                        <Image
+                            source={require('../asset/icon/rumahsakit.png')} />
+                    </View>
+                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Rumah Sakit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('MapsMenu')}>
+                    <View style={style.linkMenu4}>
+                        <Image
+                            source={require('../asset/icon/spbu.png')} />
+                    </View>
+                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>SPBU</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={{ alignItems: 'center' }}
+                    onPress={() => navigation.navigate('MapsMenu')}>
+                    <View style={style.linkMenu5}>
+                        <Image
+                            source={require('../asset/icon/pertamini.png')} />
+                    </View>
+                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Pertamini</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                margin: 10,
+                alignItems: 'center',
+            }}>
+                <Text style={{
+                    fontWeight: '600',
+                    fontSize: 20,
+                    color: '#00AA13',
+                }}
+                >Merchant Kami</Text>
+                <TouchableOpacity
+                >
+                    <Text style={{
+                        fontWeight: '600',
+                        fontSize: 16,
+                        color: '#EA4335',
+                        alignSelf: 'center',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>Lihat Semua</Text>
+                </TouchableOpacity>
+
+            </View>
+
+            <TouchableOpacity style={style.wrapperMerchant}
+                onPress={() => navigation.navigate('Merchant')}
+            >
+                <View style={style.merchant}>
+                    <Image
+                        source={require('../asset/image/lokasi.png')}
+                        style={style.imgMerchant}
+                    />
+                    <View style={style.wrapTxt}>
+                        <Text style={style.txtMerchant}>Nama Merchant</Text>
+                        <Text style={style.detTxt}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</Text>
+                        <Text style={style.txtMerKat}>Kategori</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+
+
+        </ScrollView>
+    )
+}
+
+export default Home;
 
 const style = StyleSheet.create({
     wrapperTop: {
@@ -147,140 +276,4 @@ const style = StyleSheet.create({
         fontSize: 10
     }
 })
-
-
-
-
-const Home = ({ navigation }) => {
-    const {userInfo, isLoading, logout} = useContext(AuthContext);
-    return (
-        <ScrollView>
-            <Spinner visible={isLoading}/>
-            <View style={style.wrapperTop}>
-                <View style={style.flexTop}>
-                    <Text style={style.txtTop}>Halo,{userInfo.user.fullname}</Text>
-                    <TouchableOpacity
-                    onPress={logout}
-                    >
-                        <Image source={require('../asset/icon/notif.png')}
-                            style={style.icoNotif} />
-                    </TouchableOpacity>
-
-                </View>
-
-                <View style={style.searchWrap}>
-                    <Image
-                        style={style.icoMaps}
-                        source={require('../asset/icon/maps.png')}
-                    />
-                    <TextInput
-                        placeholder='Telusuri di sini'
-                        style={style.searchInput}></TextInput>
-                    <View>
-                        <TouchableOpacity >
-                            <Image
-                                style={style.mic}
-                                source={require('../asset/icon/mic.png')} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-            </View>
-            <View style={style.wrapperLink}>
-                <TouchableOpacity
-                    style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('MapsMenu')}>
-                    <View style={style.linkMenu1}>
-                        <Image
-                            source={require('../asset/icon/car.png')} />
-                    </View>
-                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Bengkel Mobil</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('Merchant')}>
-                    <View style={style.linkMenu2}>
-                        <Image
-                            source={require('../asset/icon/scooter.png')} />
-                    </View>
-                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Bengkel Motor</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('MapsMenu')}>
-                    <View style={style.linkMenu3}>
-                        <Image
-                            source={require('../asset/icon/rumahsakit.png')} />
-                    </View>
-                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Rumah Sakit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('MapsMenu')}>
-                    <View style={style.linkMenu4}>
-                        <Image
-                            source={require('../asset/icon/spbu.png')} />
-                    </View>
-                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>SPBU</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ alignItems: 'center' }}
-                    onPress={() => navigation.navigate('MapsMenu')}>
-                    <View style={style.linkMenu5}>
-                        <Image
-                            source={require('../asset/icon/pertamini.png')} />
-                    </View>
-                    <Text style={{ textAlign: 'center', maxWidth: 70, fontWeight: 'bold' }}>Pertamini</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                margin: 10,
-                alignItems: 'center',
-            }}>
-                <Text style={{
-                    fontWeight: '600',
-                    fontSize: 20,
-                    color: '#00AA13',
-                }}
-                >Merchant Kami</Text>
-                <TouchableOpacity
-                >
-                    <Text style={{
-                        fontWeight: '600',
-                        fontSize: 16,
-                        color: '#EA4335',
-                        alignSelf: 'center',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>Lihat Semua</Text>
-                </TouchableOpacity>
-
-            </View>
-
-            <TouchableOpacity style={style.wrapperMerchant}
-                onPress={() => navigation.navigate('Merchant')}
-            >
-                <View style={style.merchant}>
-                    <Image
-                        source={require('../asset/image/lokasi.png')}
-                        style={style.imgMerchant}
-                    />
-                    <View style={style.wrapTxt}>
-                        <Text style={style.txtMerchant}>Nama Merchant</Text>
-                        <Text style={style.detTxt}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</Text>
-                        <Text style={style.txtMerKat}>Kategori</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-
-
-        </ScrollView>
-    )
-}
-
-export default Home;
-
 
