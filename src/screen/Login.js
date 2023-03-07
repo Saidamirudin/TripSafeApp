@@ -5,8 +5,8 @@ import {
 } from 'react-native'
 
 const Login = ({ navigation }) => {
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    // const [email, setEmail] = useState(null);
+    // const [password, setPassword] = useState(null);
 
     return (
         <View>
@@ -36,8 +36,8 @@ const Login = ({ navigation }) => {
 
                     <TextInput
                         style={style.textInput}
-                        value={email}
-                        onChangeText={text => setEmail(text)}
+                        // value={email}
+                        // onChangeText={text => setEmail(text)}
                         label='Email'
                         placeholder='example@email.com'
                         autoCapitalize='none'
@@ -51,8 +51,8 @@ const Login = ({ navigation }) => {
                     </View>
                     <TextInput
                         style={style.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
+                        // value={password}
+                        // onChangeText={text => setPassword(text)}
                         label='Password'
                         placeholder='********'
                         autoCapitalize='none'

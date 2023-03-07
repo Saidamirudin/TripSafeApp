@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { View, StyleSheet, Text, TextInput, TouchableOpacity, Image } from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay';
+// import Spinner from 'react-native-loading-spinner-overlay';
 
 
 const Register = ({ navigation }) => {
 
-    const [name, setName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [Confpassword, setConfPassword] = useState(null);
-    const { isLoading, register, error } = useContext(AuthContext);
+    // const [name, setName] = useState(null);
+    // const [email, setEmail] = useState(null);
+    // const [password, setPassword] = useState(null);
+    // const [Confpassword, setConfPassword] = useState(null);
+    // const { isLoading, register, error } = useContext(AuthContext);
 
     return (
         <View>
@@ -31,8 +31,8 @@ const Register = ({ navigation }) => {
                     <TextInput
                         placeholder="Nama"
                         style={style.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
+                        // value={name}
+                        // onChangeText={text => setName(text)}
                     />
                 </View>
 
@@ -46,8 +46,8 @@ const Register = ({ navigation }) => {
                     <TextInput
                         placeholder="Email"
                         style={style.textInput}
-                        value={email}
-                        onChangeText={text => setEmail(text)}
+                        // value={email}
+                        // onChangeText={text => setEmail(text)}
                     />
                 </View>
 
@@ -61,8 +61,8 @@ const Register = ({ navigation }) => {
                         placeholder="Password"
                         style={style.textInput}
                         secureTextEntry
-                        value={password}
-                        onChangeText={text => setPassword(text)}
+                        // value={password}
+                        // onChangeText={text => setPassword(text)}
                     />
                 </View>
                 <View style={style.Flex}>
@@ -75,17 +75,17 @@ const Register = ({ navigation }) => {
                         placeholder="Confirm Password"
                         style={style.textInput}
                         secureTextEntry
-                        value={Confpassword}
-                        onChangeText={text => setConfPassword(text)}
+                        // value={Confpassword}
+                        // onChangeText={text => setConfPassword(text)}
                     />
                 </View>
 
             </View>
 
             <TouchableOpacity
-                onPress={() => {
-                    register(name, email, password, Confpassword, navigation);
-                }}
+                // onPress={() => {
+                //     register(name, email, password, Confpassword, navigation);
+                // }}
             >
                 <View style={style.viewButton}
                 >

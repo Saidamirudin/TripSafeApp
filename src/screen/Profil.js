@@ -1,6 +1,6 @@
 import React from 'react'
 import {Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { logoutUser } from '../api/auth-api'
+
 
 const style = StyleSheet.create({
     topText: {
@@ -131,8 +131,7 @@ const Profil = () => {
                     <Text style={style.txtSimpan}>Simpan</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={style.logout}
-                onPress={logoutUser}>
+                <TouchableOpacity style={style.logout}>
                     <Text style={style.txtLogout}>Keluar</Text>
                 </TouchableOpacity>
                 

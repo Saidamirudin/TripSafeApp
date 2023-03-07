@@ -1,10 +1,49 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-// import MapboxGL from '@rnmapbox/maps'
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import MapboxGL, { MapView, UserLoacation } from '@rnmapbox/maps';
+import Permission from 'react-native';
 
-// MapboxGL.setAccessToken("pk.eyJ1Ijoic2FpZGFtbWlyLTgwIiwiYSI6ImNsYnlzMG52ZzJoeDEzbm50NDhneGs5NTAifQ.q_dkQuhpEW6WqtwK9myGWA");
-// MapboxGL.setWellKnownTileServer(MapboxGL.Mapbox);
-// MapboxGL.setWellKnownTileServer("Mapbox");
+
+MapboxGL.setWellKnownTileServer('Mapbox');
+MapboxGL.setAccessToken('pk.eyJ1Ijoic2FpZGFtbWlyLTgwIiwiYSI6ImNsYnlzMG52ZzJoeDEzbm50NDhneGs5NTAifQ.q_dkQuhpEW6WqtwK9myGWA');
+
+const Maps = () => {
+
+    // const [coordinates] = useState([8.674252499999994, 9.0845755]);
+    return (
+        <View>
+            <View style={style.topText}>
+                <Text style={style.txtTop}>
+                    Maps - Lokasi Anda Sekarang
+                </Text>
+            </View>
+            <View style={style.wrapMapbox}>
+                <MapboxGL.MapView
+                    style={style.map} >
+                </MapboxGL.MapView>
+            </View>
+            <View style={style.wrapLocation}>
+                <View style={style.detInfo}>
+                    <Text style={style.txtInfo}>Titik Koordinat Lokasi Anda :</Text>
+                    <Text style={style.txtKoor}>.............................</Text>
+                </View>
+                <View style={style.wrapTouch}>
+                    <TouchableOpacity>
+                        <Image style={style.copy} source={require('../asset/icon/copy.png')}></Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image style={style.share} source={require('../asset/icon/share.png')}></Image>
+                    </TouchableOpacity>
+
+
+                </View>
+            </View>
+        </View>
+    )
+}
+
+export default Maps;
+
 
 const style = StyleSheet.create({
     topText: {
@@ -56,45 +95,8 @@ const style = StyleSheet.create({
         width: 30,
         height: 30,
         elevation: 5
+    },
+    map: {
+        flex: 1
     }
 })
-
-const Maps = () => {
-
-    // const [coordinates] = useState([8.674252499999994, 9.0845755]);
-
-    return (
-        <View>
-            <View style={style.topText}>
-                <Text style={style.txtTop}>
-                    Maps - Lokasi Anda Sekarang
-                </Text>
-            </View>
-            <View style={style.wrapMapbox}>
-                {/* <MapboxGL.MapView style={style.wrapMapbox}>
-                    <MapboxGL.Camera zoomLevel={6}
-                        centerCoordinate={coordinates} />
-                    <MapboxGL.PointAnnotation coordinate={coordinates} />
-                </MapboxGL.MapView> */}
-            </View>
-            <View style={style.wrapLocation}>
-                <View style={style.detInfo}>
-                    <Text style={style.txtInfo}>Titik Koordinat Lokasi Anda :</Text>
-                    <Text style={style.txtKoor}>.............................</Text>
-                </View>
-                <View style={style.wrapTouch}>
-                    <TouchableOpacity>
-                        <Image style={style.copy} source={require('../asset/icon/copy.png')}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image style={style.share} source={require('../asset/icon/share.png')}></Image>
-                    </TouchableOpacity>
-
-
-                </View>
-            </View>
-        </View>
-    )
-}
-
-export default Maps;
